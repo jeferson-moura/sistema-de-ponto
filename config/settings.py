@@ -70,7 +70,12 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'config.wsgi.application'
+CSRF_TRUSTED_ORIGINS = [
+    "https://sistema-de-ponto-s48c.onrender.com"
+]
 
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
 
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
