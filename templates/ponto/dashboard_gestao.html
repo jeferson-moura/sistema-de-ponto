@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2 class="mb-4">Dashboard da Empresa</h2>
+
+<div class="row">
+
+<div class="col-md-3">
+<div class="card p-3 shadow">
+<h5>Funcionários</h5>
+<h2>{{ funcionarios }}</h2>
+</div>
+</div>
+
+<div class="col-md-3">
+<div class="card p-3 shadow">
+<h5>Pontos hoje</h5>
+<h2>{{ pontos_hoje }}</h2>
+</div>
+</div>
+
+<div class="col-md-3">
+<div class="card p-3 shadow">
+<h5>Atrasos</h5>
+<h2>{{ atrasos_hoje }}</h2>
+</div>
+</div>
+
+</div>
+
+<br>
+
+<div class="card p-4 shadow">
+<h4>Ranking de Registros</h4>
+
+<table class="table">
+<tr>
+<th>Funcionário</th>
+<th>Total</th>
+</tr>
+
+{% for r in ranking %}
+<tr>
+<td>{{ r.funcionario__username }}</td>
+<td>{{ r.total }}</td>
+</tr>
+{% endfor %}
+
+</table>
+</div>
+
+{% endblock %}

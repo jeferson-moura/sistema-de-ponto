@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="alert alert-info">
+Status de hoje: <strong>{{ status }}</strong>
+</div>
+
+<div class="row">
+
+<div class="col-md-6">
+<div class="card p-4 shadow">
+
+<h4 class="mb-3">Registrar ponto</h4>
+
+<form method="POST">
+{% csrf_token %}
+
+<input type="hidden" name="latitude" id="latitude">
+<input type="hidden" name="longitude" id="longitude">
+
+<button name="tipo" value="entrada" class="btn btn-success w-100 mb-2">
+Entrada
+</button>
+
+<button name="tipo" value="almoco_saida" class="btn btn-warning w-100 mb-2">
+Saída para Almoço
+</button>
+
+<button name="tipo" value="almoco_volta" class="btn btn-info w-100 mb-2">
+Volta do Almoço
+</button>
+
+<button name="tipo" value="saida" class="btn btn-primary w-100">
+Saída
+</button>
+
+</form>
+
+</div>
+</div>
+
+<div class="col-md-6">
+<div class="card p-4 shadow">
+
+<h4 class="mb-3">Últimos registros</h4>
+
+<table class="table table-striped">
+<tr>
+<th>Data</th>
+<th>Hora</th>
+<th>Tipo</th>
+</tr>
+
+{% for r in registros %}
+<tr>
+<td>{{ r.data_hora|date:"d/m/Y" }}</td>
+<td>{{ r.data_hora|time:"H:i" }}</td>
+<td>{{ r.tipo }}</td>
+</tr>
+{% endfor %}
+
+</table>
+
+</div>
+</div>
+
+</div>
+
+<script>
+navigator.geolocation.getCurrentPosition(function(position) {
+document.getElementById("latitude").value = position.coords.latitude;
+document.getElementById("longitude").value = position.coords.longitude;
+});
+</script>
+
+{% endblock %}

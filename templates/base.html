@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Sistema de Ponto</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+body {
+    background-color: #f5f6fa;
+}
+
+.navbar {
+    background-color: #1e272e;
+}
+
+.navbar-brand {
+    color: white;
+}
+
+.card {
+    border-radius: 12px;
+}
+</style>
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg">
+<div class="container">
+
+<a class="navbar-brand" href="/">Sistema de Ponto</a>
+
+<div class="d-flex align-items-center gap-3">
+
+<span class="text-white">
+👤 {{ request.user.username }}
+</span>
+
+<span class="text-white">
+🕒 <span id="horaAtual"></span>
+</span>
+
+<a class="btn btn-light btn-sm" href="/gestao/">Dashboard</a>
+<a class="btn btn-light btn-sm" href="/relatorio/">Relatórios</a>
+<form action="/logout/" method="post" style="display:inline;">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger btn-sm">
+        Sair
+    </button>
+</form>
+
+</div>
+
+</div>
+</nav>
+
+<div class="container mt-4">
+
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    {% endfor %}
+{% endif %}
+
+{% block content %}
+{% endblock %}
+
+</div>
+
+<script>
+function atualizarHora(){
+    const agora = new Date();
+    const hora = agora.toLocaleTimeString('pt-BR');
+    document.getElementById("horaAtual").innerText = hora;
+}
+
+setInterval(atualizarHora, 1000);
+</script>
+
+</body>
+</html>

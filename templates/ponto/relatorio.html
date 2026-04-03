@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+<h2>Relatório de Registros</h2>
+
+<a href="/exportar-excel/" class="btn btn-success">
+Baixar relatório em Excel
+</a>
+</div>
+
+<div class="card shadow p-4">
+
+<table class="table table-hover">
+
+<thead class="table-dark">
+<tr>
+<th>Funcionário</th>
+<th>Data</th>
+<th>Hora</th>
+<th>Tipo</th>
+<th>Atraso</th>
+</tr>
+</thead>
+
+<tbody>
+
+{% for r in registros %}
+<tr>
+<td>{{ r.funcionario.username }}</td>
+<td>{{ r.data_hora|date:"d/m/Y" }}</td>
+<td>{{ r.data_hora|time:"H:i" }}</td>
+<td>{{ r.tipo }}</td>
+
+<td>
+{% if r.atrasado %}
+<span class="badge bg-danger">Sim</span>
+{% else %}
+<span class="badge bg-success">Não</span>
+{% endif %}
+</td>
+
+</tr>
+{% endfor %}
+
+</tbody>
+
+</table>
+
+</div>
+
+{% endblock %}

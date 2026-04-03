@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Painel Administrativo</title>
+</head>
+<body>
+
+<h2>Painel de Registros de Ponto</h2>
+
+<table border="1">
+<tr>
+<th>Funcionário</th>
+<th>Tipo</th>
+<th>Data</th>
+<th>Hora</th>
+<th>Latitude</th>
+<th>Longitude</th>
+</tr>
+
+{% for r in registros %}
+
+<tr>
+<td>{{ r.funcionario.username }}</td>
+<td>{{ r.tipo }}</td>
+<td>{{ r.data_hora|date:"d/m/Y" }}</td>
+<td>{{ r.data_hora|date:"H:i" }}</td>
+<td>{{ r.latitude }}</td>
+<td>{{ r.longitude }}</td>
+</tr>
+
+{% endfor %}
+
+</table>
+
+</body>
+</html>
