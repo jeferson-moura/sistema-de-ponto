@@ -1,32 +1,131 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
+    <meta charset="UTF-8">
     <title>Login</title>
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Fonte moderna -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: #fafafa;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 350px;
+        }
+
+        .card {
+            background: #fff;
+            border: 1px solid #dbdbdb;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 25px;
+        }
+
+        .input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #dbdbdb;
+            border-radius: 6px;
+            background: #fafafa;
+        }
+
+        .input:focus {
+            outline: none;
+            border-color: #a8a8a8;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #0095f6;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .btn:hover {
+            background-color: #1877f2;
+        }
+
+        .error {
+            color: #ed4956;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .footer {
+            margin-top: 15px;
+            padding: 15px;
+            border: 1px solid #dbdbdb;
+            text-align: center;
+            background: #fff;
+            font-size: 14px;
+        }
+    </style>
 </head>
+
 <body>
 
-<h2>Login</h2>
+<div class="container">
 
-<form method="post">
-    {% csrf_token %}
+    <div class="card">
 
-    {% if form.errors %}
-        <p style="color:red;">Usuário ou senha inválidos</p>
-    {% endif %}
+        <div class="logo">Sistema de Ponto</div>
 
-    <label>Usuário:</label>
-    {{ form.username }}
+        <form method="post">
+            {% csrf_token %}
 
-    <br><br>
+            {% if form.errors %}
+                <div class="error">
+                    Usuário ou senha inválidos
+                </div>
+            {% endif %}
 
-    <label>Senha:</label>
-    {{ form.password }}
+            <!-- Campo usuário -->
+            <input type="text" name="username" class="input" placeholder="Usuário">
 
-    <br><br>
+            <!-- Campo senha -->
+            <input type="password" name="password" class="input" placeholder="Senha">
 
-    <button type="submit">Entrar</button>
-</form>
+            <button type="submit" class="btn">
+                Entrar
+            </button>
+
+        </form>
+
+    </div>
+
+    <div class="footer">
+        Controle de ponto moderno
+    </div>
+
+</div>
 
 </body>
 </html>
