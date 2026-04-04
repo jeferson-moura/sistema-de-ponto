@@ -76,7 +76,10 @@ else:
             'NAME': BASE_DIR / 'db.sqlite3',
         }
     }
-
+CSRF_TRUSTED_ORIGINS = [
+    'https://sistema-de-ponto-s48c.onrender.com'
+]
+ALLOWED_HOSTS = ['*']
 # SENHAS
 AUTH_PASSWORD_VALIDATORS = [
     {
