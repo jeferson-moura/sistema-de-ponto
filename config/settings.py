@@ -97,7 +97,7 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # LOGIN
 LOGIN_REDIRECT_URL = '/'
-LOGOUT_REDIRECT_URL = '/accounts/login/'
+LOGOUT_REDIRECT_URL = '/login/'
 
 # CSRF (RENDER)
 CSRF_TRUSTED_ORIGINS = [
