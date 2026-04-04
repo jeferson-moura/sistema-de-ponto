@@ -15,8 +15,7 @@ urlpatterns = [
     path('', views.dashboard, name='dashboard'),
 
     # LOGIN PADRÃO DO DJANGO
-    path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
-
+    path('login/', views.login_view, name='login'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
 
     path('relatorio/', views.relatorio, name='relatorio'),

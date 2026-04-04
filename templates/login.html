@@ -99,7 +99,8 @@
         <div class="logo">Sistema de Ponto</div>
 
         <form method="post">
-            {% csrf_token %}
+            <form method="post">
+                {% csrf_token %}
 
             {% if form.errors %}
                 <div class="error">

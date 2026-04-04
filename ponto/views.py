@@ -4,9 +4,33 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from django.contrib import messages
 from django.contrib.auth.models import User
-
 from .models import RegistroPonto
 
+from django.contrib.auth import authenticate, login
+from django.contrib import messages
+from django.contrib.auth.models import User
+
+def login_view(request):
+    # 🔥 GARANTE QUE O ADMIN EXISTE
+    if not User.objects.filter(username='ana_cristina').exists():
+        User.objects.create_superuser(
+            username='ana_cristina',
+            password='ana883314'
+        )
+
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+            return redirect('dashboard')
+        else:
+            messages.error(request, 'Usuário ou senha inválidos')
+
+    return render(request, 'login.html')
 
 # 🔥 CRIA ADMIN AUTOMÁTICO
 def criar_admin_automatico():
