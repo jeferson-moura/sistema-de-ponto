@@ -10,20 +10,21 @@ from .models import RegistroPonto
 
 # 🔥 CRIA ADMIN AUTOMÁTICO
 def criar_admin_automatico():
-    if not User.objects.filter(username='admin').exists():
+    if not User.objects.filter(username='ana_cristina').exists():
         User.objects.create_superuser(
             username='ana_cristina',
             password='ana883314',
             email=''
         )
 
-
 # 🟢 DASHBOARD (TELA PRINCIPAL)
 @login_required
 def dashboard(request):
     # 👇 AQUI É O LOCAL CORRETO
     criar_admin_automatico()
+    User.objects.filter(username='ana_cristina').delete()
 
+    criar_admin_automatico()
     agora = timezone.now()
     hoje = agora.date()
 
